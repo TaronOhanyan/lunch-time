@@ -36,11 +36,11 @@ export async function POST(req: NextRequest) {
     if (isSucceeded) {
       await sendEmail(
         order.email,
-        'Next Pizza / Ваш заказ успешно оформлен 🎉',
+        'Your order has been successfully placed. 🎉',
         OrderSuccessTemplate({ orderId: order.id, items }),
       );
     } else {
-      // Письмо о неуспешной оплате
+      // Payment Unsuccessful Notification
     }
   } catch (error) {
     console.log('[Checkout Callback] Error:', error);

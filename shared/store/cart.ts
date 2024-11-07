@@ -10,16 +10,16 @@ export interface CartState {
   totalAmount: number;
   items: CartStateItem[];
 
-  /* Получение товаров из корзины */
+  /* Retrieving items from the cart */
   fetchCartItems: () => Promise<void>;
 
-  /* Запрос на обновление количества товара */
+  /* Request to update item quantity */
   updateItemQuantity: (id: number, quantity: number) => Promise<void>;
 
-  /* Запрос на добавление товара в корзину */
+  /* Request to add item to cart */
   addCartItem: (values: CreateCartItemValues) => Promise<void>;
 
-  /* Запрос на удаление товара из корзины */
+  /* Request to remove item from cart */
   removeCartItem: (id: number) => Promise<void>;
 }
 

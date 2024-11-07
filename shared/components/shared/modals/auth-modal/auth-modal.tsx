@@ -13,10 +13,10 @@ interface Props {
 }
 
 export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
-  const [type, setType] = React.useState<'login' | 'register'>('login');
+  const [type, setType] = React.useState<'Sign in' | 'Create an account'>('Sign in');
 
   const onSwitchType = () => {
-    setType(type === 'login' ? 'register' : 'login');
+    setType(type === 'Sign in' ? 'Create an account' : 'Sign in');
   };
 
   const handleClose = () => {
@@ -26,7 +26,7 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="w-[450px] bg-white p-10">
-        {type === 'login' ? (
+        {type === 'Sign in' ? (
           <LoginForm onClose={handleClose} />
         ) : (
           <RegisterForm onClose={handleClose} />
@@ -67,7 +67,7 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
         </div>
 
         <Button variant="outline" onClick={onSwitchType} type="button" className="h-12">
-          {type !== 'login' ? 'Войти' : 'Регистрация'}
+          {type !== 'Sign in' ? 'Sign in' : 'Create an account'}
         </Button>
       </DialogContent>
     </Dialog>

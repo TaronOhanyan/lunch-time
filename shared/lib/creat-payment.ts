@@ -13,7 +13,7 @@ export async function createPayment(details: Props) {
     {
       amount: {
         value: details.amount.toString(),
-        currency: 'RUB',
+        currency: 'USD',
       },
       capture: true,
       description: details.description,

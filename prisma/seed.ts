@@ -29,14 +29,14 @@ async function up() {
     data: [
       {
         fullName: 'User Test',
-        email: 'user@test.ru',
+        email: 'user@test.com',
         password: hashSync('111111', 10),
         verified: new Date(),
         role: 'USER',
       },
       {
         fullName: 'Admin Admin',
-        email: 'admin@test.ru',
+        email: 'admin@test.com',
         password: hashSync('111111', 10),
         verified: new Date(),
         role: 'ADMIN',
@@ -58,9 +58,8 @@ async function up() {
 
   const pizza1 = await prisma.product.create({
     data: {
-      name: 'Пепперони фреш',
-      imageUrl:
-        'https://media.dodostatic.net/image/r:233x233/11EE7D61304FAF5A98A6958F2BB2D260.webp',
+      name: 'Pepperoni Fresh',
+      imageUrl: '/assets/images/products/pizza/PepperoniFresh.png',
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 5),
@@ -70,9 +69,8 @@ async function up() {
 
   const pizza2 = await prisma.product.create({
     data: {
-      name: 'Сырная',
-      imageUrl:
-        'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp',
+      name: 'Cheese',
+      imageUrl: '/assets/images/products/pizza/Cheese.png',
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 10),
@@ -82,9 +80,8 @@ async function up() {
 
   const pizza3 = await prisma.product.create({
     data: {
-      name: 'Чоризо фреш',
-      imageUrl:
-        'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.webp',
+      name: 'Chorizo Fresh',
+      imageUrl: '/assets/images/products/pizza/ChorizoFresh.png',
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(10, 40),
@@ -94,12 +91,12 @@ async function up() {
 
   await prisma.productItem.createMany({
     data: [
-      // Пицца "Пепперони фреш"
+      // Pizza "Pepperoni Fresh"
       generateProductItem({ productId: pizza1.id, pizzaType: 1, size: 20 }),
       generateProductItem({ productId: pizza1.id, pizzaType: 2, size: 30 }),
       generateProductItem({ productId: pizza1.id, pizzaType: 2, size: 40 }),
 
-      // Пицца "Сырная"
+      // Pizza "Cheese"
       generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 20 }),
       generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 30 }),
       generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 40 }),
@@ -107,12 +104,12 @@ async function up() {
       generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 30 }),
       generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 40 }),
 
-      // Пицца "Чоризо фреш"
+      // Pizza "Chorizo Fresh"
       generateProductItem({ productId: pizza3.id, pizzaType: 1, size: 20 }),
       generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 30 }),
       generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 40 }),
 
-      // Остальные продукты
+      // "Other products"
       generateProductItem({ productId: 1 }),
       generateProductItem({ productId: 2 }),
       generateProductItem({ productId: 3 }),
@@ -162,58 +159,53 @@ async function up() {
   await prisma.story.createMany({
     data: [
       {
-        previewImageUrl:
-          'https://cdn.inappstory.ru/story/xep/xzh/zmc/cr4gcw0aselwvf628pbmj3j/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3101815496',
+        previewImageUrl: '/assets/images/stories/Burger.png',
       },
       {
-        previewImageUrl:
-          'https://cdn.inappstory.ru/story/km2/9gf/jrn/sb7ls1yj9fe5bwvuwgym73e/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3074015640',
+        previewImageUrl: '/assets/images/stories/Chicken_Nuggets.png',
       },
       {
-        previewImageUrl:
-          'https://cdn.inappstory.ru/story/quw/acz/zf5/zu37vankpngyccqvgzbohj1/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=1336215020',
+        previewImageUrl: '/assets/images/stories/Finger_Food.png',
       },
       {
-        previewImageUrl:
-          'https://cdn.inappstory.ru/story/7oc/5nf/ipn/oznceu2ywv82tdlnpwriyrq/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=38903958',
+        previewImageUrl: '/assets/images/stories/Ham_Mushroom_Omelette.png',
       },
       {
-        previewImageUrl:
-          'https://cdn.inappstory.ru/story/q0t/flg/0ph/xt67uw7kgqe9bag7spwkkyw/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=2941222737',
+        previewImageUrl: '/assets/images/stories/Omelette_Pepperoni.png',
       },
       {
-        previewImageUrl:
-          'https://cdn.inappstory.ru/story/lza/rsp/2gc/xrar8zdspl4saq4uajmso38/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=4207486284',
+        previewImageUrl: '/assets/images/stories/Pizza.png',
       },
     ],
   });
+  
 
   await prisma.storyItem.createMany({
     data: [
       {
         storyId: 1,
         sourceUrl:
-          'https://cdn.inappstory.ru/file/dd/yj/sx/oqx9feuljibke3mknab7ilb35t.webp?k=IgAAAAAAAAAE',
+          '',
       },
       {
         storyId: 1,
         sourceUrl:
-          'https://cdn.inappstory.ru/file/jv/sb/fh/io7c5zarojdm7eus0trn7czdet.webp?k=IgAAAAAAAAAE',
+          '',
       },
       {
         storyId: 1,
         sourceUrl:
-          'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
+          '',
       },
       {
         storyId: 1,
         sourceUrl:
-          'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
+          '',
       },
       {
         storyId: 1,
         sourceUrl:
-          'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
+          '',
       },
     ],
   });
