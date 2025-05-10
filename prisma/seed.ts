@@ -1,7 +1,7 @@
-import { Prisma } from '@prisma/client';
-import { categories, _ingredients, products } from './constants';
-import { prisma } from './prisma-client';
-import { hashSync } from 'bcrypt';
+import { Prisma } from "@prisma/client";
+import { categories, _ingredients, products } from "./constants";
+import { prisma } from "./prisma-client";
+import { hashSync } from "bcrypt";
 
 const randomDecimalNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10;
@@ -28,18 +28,18 @@ async function up() {
   await prisma.user.createMany({
     data: [
       {
-        fullName: 'User Test',
-        email: 'user@test.com',
-        password: hashSync('111111', 10),
+        fullName: "User Test",
+        email: "user@test.com",
+        password: hashSync("111111", 10),
         verified: new Date(),
-        role: 'USER',
+        role: "USER",
       },
       {
-        fullName: 'Admin Admin',
-        email: 'admin@test.com',
-        password: hashSync('111111', 10),
+        fullName: "Admin Admin",
+        email: "admin@test.com",
+        password: hashSync("111111", 10),
         verified: new Date(),
-        role: 'ADMIN',
+        role: "ADMIN",
       },
     ],
   });
@@ -58,8 +58,8 @@ async function up() {
 
   const pizza1 = await prisma.product.create({
     data: {
-      name: 'Pepperoni Fresh',
-      imageUrl: '/assets/images/products/pizza/PepperoniFresh.png',
+      name: "Pepperoni Fresh",
+      imageUrl: "/assets/images/products/pizza/PepperoniFresh.png",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 5),
@@ -69,8 +69,8 @@ async function up() {
 
   const pizza2 = await prisma.product.create({
     data: {
-      name: 'Cheese',
-      imageUrl: '/assets/images/products/pizza/Cheese.png',
+      name: "Cheese",
+      imageUrl: "/assets/images/products/pizza/Cheese.png",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 10),
@@ -80,8 +80,8 @@ async function up() {
 
   const pizza3 = await prisma.product.create({
     data: {
-      name: 'Chorizo Fresh',
-      imageUrl: '/assets/images/products/pizza/ChorizoFresh.png',
+      name: "Chorizo Fresh",
+      imageUrl: "/assets/images/products/pizza/ChorizoFresh.png",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(10, 40),
@@ -135,12 +135,12 @@ async function up() {
       {
         userId: 1,
         totalAmount: 0,
-        token: '11111',
+        token: "11111",
       },
       {
         userId: 2,
         totalAmount: 0,
-        token: '222222',
+        token: "222222",
       },
     ],
   });
@@ -159,54 +159,58 @@ async function up() {
   await prisma.story.createMany({
     data: [
       {
-        previewImageUrl: '/assets/images/stories/Burger.png',
+        previewImageUrl: "/assets/images/stories/Pepperoni_Pizza.jpg",
       },
       {
-        previewImageUrl: '/assets/images/stories/Chicken_Nuggets.png',
+        previewImageUrl: "/assets/images/stories/Spicy_Chicken_Shawarma.jpg",
       },
       {
-        previewImageUrl: '/assets/images/stories/Finger_Food.png',
+        previewImageUrl: "/assets/images/stories/Chicken_Burrito.jpg",
       },
       {
-        previewImageUrl: '/assets/images/stories/Ham_Mushroom_Omelette.png',
+        previewImageUrl: "/assets/images/stories/Hot_Dog.jpg",
       },
       {
-        previewImageUrl: '/assets/images/stories/Omelette_Pepperoni.png',
+        previewImageUrl: "/assets/images/stories/Burger.jpg",
       },
       {
-        previewImageUrl: '/assets/images/stories/Pizza.png',
+        previewImageUrl: "/assets/images/stories/Eggplant_Caprese.jpg",
       },
     ],
   });
-  
 
   await prisma.storyItem.createMany({
     data: [
+      { storyId: 1, sourceUrl: "/assets/images/stories/Pepperoni_Pizza.jpg" },
       {
         storyId: 1,
-        sourceUrl:
-          '',
+        sourceUrl: "/assets/images/stories/Margherita_Pizza.jpg",
       },
       {
         storyId: 1,
-        sourceUrl:
-          '',
+        sourceUrl: "/assets/images/stories/Bread_Dough_Preparation.jpg",
       },
+
       {
-        storyId: 1,
-        sourceUrl:
-          '',
+        storyId: 2,
+        sourceUrl: "/assets/images/stories/Spicy_Chicken_Shawarma.jpg",
       },
+      { storyId: 2, sourceUrl: "/assets/images/stories/Beef_Shawarma.jpg" },
+
       {
-        storyId: 1,
-        sourceUrl:
-          '',
+        storyId: 3,
+        sourceUrl: "/assets/images/stories/Chicken_Burrito.jpg",
       },
+
+      { storyId: 4, sourceUrl: "/assets/images/stories/Hot_Dog.jpg" },
+
       {
-        storyId: 1,
-        sourceUrl:
-          '',
+        storyId: 5,
+        sourceUrl: "/assets/images/stories/Burger.jpg",
       },
+      { storyId: 5, sourceUrl: "/assets/images/stories/Cheeseburger.jpg" },
+
+      { storyId: 6, sourceUrl: "/assets/images/stories/Eggplant_Caprese.jpg" },
     ],
   });
 }

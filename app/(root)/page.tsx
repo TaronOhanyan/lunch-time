@@ -5,34 +5,43 @@ import {
   TopBar,
   ProductsGroupList,
   Stories,
-} from '@/shared/components/shared';
-import { Suspense } from 'react';
-import { GetSearchParams, findPizzas } from '@/shared/lib/find-pizzas';
+  SortPopup,
+} from "@/shared/components/shared";
+import { Suspense } from "react";
+import { GetSearchParams, findPizzas } from "@/shared/lib/find-pizzas";
+import { FiltersDrawer } from "@/shared/components/shared/filters-drawer";
 
-export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: GetSearchParams;
+}) {
   const categories = await findPizzas(searchParams);
 
   return (
     <>
-      <Container className="mt-10">
+      <Container className="flex items-center justify-between pl-4 pt-4 pb-2">
         <Title text="Menu" size="lg" className="font-extrabold" />
+
+        <SortPopup className="md:hidden" />
       </Container>
 
-      <TopBar categories={categories.filter((category) => category.products.length > 0)} />
+      <TopBar
+        categories={categories.filter(
+          (category) => category.products.length > 0
+        )}
+      />
 
       <Stories />
 
-      <Container className="mt-10 pb-14">
-        <div className="flex gap-[80px]">
+      <Container className="mt-10 pb-4">
+        <div className="flex flex-col md:flex-row md:p-4 gap-x-[100px]">
           {/* Filtration */}
-          <div className="w-[250px]">
-            <Suspense>
-              <Filters />
-            </Suspense>
-          </div>
+
+          <FiltersDrawer />
 
           {/* List of products */}
-          <div className="flex-1">
+          <div className="flex-1 p-4 overflow-y-auto">
             <div className="flex flex-col gap-16">
               {categories.map(
                 (category) =>
@@ -43,7 +52,7 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
                       categoryId={category.id}
                       items={category.products}
                     />
-                  ),
+                  )
               )}
             </div>
           </div>

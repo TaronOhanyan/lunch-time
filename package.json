@@ -17,13 +17,14 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
-    "@prisma/client": "^5.13.0",
+    "@prisma/client": "^6.7.0",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@react-google-maps/api": "^2.20.6",
     "@types/bcrypt": "^5.0.2",
     "@types/qs": "^6.9.15",
     "axios": "^1.6.8",
@@ -34,7 +35,6 @@
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "nextjs-toploader": "^1.6.12",
-    "prisma": "^5.13.0",
     "qs": "^6.12.1",
     "react": "^18",
     "react-dadata": "^2.23.1",
@@ -47,6 +47,7 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
+    "use-places-autocomplete": "^4.0.1",
     "vaul": "^0.9.0",
     "zod": "^3.23.8",
     "zustand": "^4.5.2"
@@ -58,7 +59,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
+    "prisma": "^6.7.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }

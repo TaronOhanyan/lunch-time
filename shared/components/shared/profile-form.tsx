@@ -1,17 +1,20 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { TFormRegisterValues, formRegisterSchema } from './modals/auth-modal/forms/schemas';
-import { User } from '@prisma/client';
-import toast from 'react-hot-toast';
-import { signOut } from 'next-auth/react';
-import { Container } from './container';
-import { Title } from './title';
-import { FormInput } from './form';
-import { Button } from '../ui';
-import { updateUserInfo } from '@/app/actions';
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import {
+  TFormRegisterValues,
+  formRegisterSchema,
+} from "./modals/auth-modal/forms/schemas";
+import { User } from "@prisma/client";
+import toast from "react-hot-toast";
+import { signOut } from "next-auth/react";
+import { Container } from "./container";
+import { Title } from "./title";
+import { FormInput } from "./form";
+import { Button } from "../ui";
+import { updateUserInfo } from "@/app/actions";
 
 interface Props {
   data: User;
@@ -23,8 +26,8 @@ export const ProfileForm: React.FC<Props> = ({ data }) => {
     defaultValues: {
       fullName: data.fullName,
       email: data.email,
-      password: '',
-      confirmPassword: '',
+      password: "",
+      confirmPassword: "",
     },
   });
 
@@ -36,35 +39,56 @@ export const ProfileForm: React.FC<Props> = ({ data }) => {
         password: data.password,
       });
 
-      toast.error('Data updated 📝', {
-        icon: '✅',
+      toast.error("Data updated 📝", {
+        icon: "✅",
       });
     } catch (error) {
-      return toast.error('Error updating data', {
-        icon: '❌',
+      return toast.error("Error updating data", {
+        icon: "❌",
       });
     }
   };
 
   const onClickSignOut = () => {
     signOut({
-      callbackUrl: '/',
+      callbackUrl: "/",
     });
   };
 
   return (
-    <Container className="my-10">
-      <Title text={`Personal information | #${data.id}`} size="md" className="font-bold" />
+    <Container className="my-10 p-4">
+      <Title
+        text={`Personal information | #${data.id}`}
+        size="md"
+        className="font-bold"
+      />
 
       <FormProvider {...form}>
-        <form className="flex flex-col gap-5 w-96 mt-10" onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col gap-5 w-full max-w-md mt-10"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <FormInput name="email" label="Email" required />
           <FormInput name="fullName" label="Full name" required />
 
-          <FormInput type="password" name="password" label="New password" required />
-          <FormInput type="password" name="confirmPassword" label="Confirm password" required />
+          <FormInput
+            type="password"
+            name="password"
+            label="New password"
+            required
+          />
+          <FormInput
+            type="password"
+            name="confirmPassword"
+            label="Confirm password"
+            required
+          />
 
-          <Button disabled={form.formState.isSubmitting} className="text-base mt-10" type="submit">
+          <Button
+            disabled={form.formState.isSubmitting}
+            className="text-base mt-10"
+            type="submit"
+          >
             Save
           </Button>
 
@@ -73,7 +97,8 @@ export const ProfileForm: React.FC<Props> = ({ data }) => {
             variant="secondary"
             disabled={form.formState.isSubmitting}
             className="text-base"
-            type="button">
+            type="button"
+          >
             Log out
           </Button>
         </form>

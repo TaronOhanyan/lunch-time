@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Button } from '@/shared/components';
-import { Dialog, DialogContent } from '@/shared/components/ui/dialog';
-import { signIn } from 'next-auth/react';
-import React from 'react';
-import { LoginForm } from './forms/login-form';
-import { RegisterForm } from './forms/register-form';
+import { Button } from "@/shared/components";
+import { Dialog, DialogContent } from "@/shared/components/ui/dialog";
+import { signIn } from "next-auth/react";
+import React from "react";
+import { LoginForm } from "./forms/login-form";
+import { RegisterForm } from "./forms/register-form";
 
 interface Props {
   open: boolean;
@@ -13,10 +13,12 @@ interface Props {
 }
 
 export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
-  const [type, setType] = React.useState<'Sign in' | 'Create an account'>('Sign in');
+  const [type, setType] = React.useState<"Sign in" | "Create an account">(
+    "Sign in"
+  );
 
   const onSwitchType = () => {
-    setType(type === 'Sign in' ? 'Create an account' : 'Sign in');
+    setType(type === "Sign in" ? "Create an account" : "Sign in");
   };
 
   const handleClose = () => {
@@ -25,8 +27,8 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="w-[450px] bg-white p-10">
-        {type === 'Sign in' ? (
+      <DialogContent className="w-[90%] max-w-[450px] max-h-[90vh] overflow-y-auto p-6 sm:p-10 bg-white rounded-2xl">
+        {type === "Sign in" ? (
           <LoginForm onClose={handleClose} />
         ) : (
           <RegisterForm onClose={handleClose} />
@@ -37,27 +39,32 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
           <Button
             variant="secondary"
             onClick={() =>
-              signIn('github', {
-                callbackUrl: '/',
+              signIn("github", {
+                callbackUrl: "/",
                 redirect: true,
               })
             }
             type="button"
-            className="gap-2 h-12 p-2 flex-1">
-            <img className="w-6 h-6" src="https://github.githubassets.com/favicons/favicon.svg" />
+            className="gap-2 h-10 text-sm p-2 flex-1"
+          >
+            <img
+              className="w-6 h-6"
+              src="https://github.githubassets.com/favicons/favicon.svg"
+            />
             GitHub
           </Button>
 
           <Button
             variant="secondary"
             onClick={() =>
-              signIn('google', {
-                callbackUrl: '/',
+              signIn("google", {
+                callbackUrl: "/",
                 redirect: true,
               })
             }
             type="button"
-            className="gap-2 h-12 p-2 flex-1">
+            className="gap-2 h-12 p-2 flex-1"
+          >
             <img
               className="w-6 h-6"
               src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
@@ -66,8 +73,13 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
           </Button>
         </div>
 
-        <Button variant="outline" onClick={onSwitchType} type="button" className="h-12">
-          {type !== 'Sign in' ? 'Sign in' : 'Create an account'}
+        <Button
+          variant="outline"
+          onClick={onSwitchType}
+          type="button"
+          className="h-12"
+        >
+          {type !== "Sign in" ? "Sign in" : "Create an account"}
         </Button>
       </DialogContent>
     </Dialog>
