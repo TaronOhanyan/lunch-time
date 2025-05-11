@@ -40,17 +40,23 @@ export default function CheckoutPage() {
 
   React.useEffect(() => {
     async function fetchUserInfo() {
+      if (!session) return;
+
       const data = await Api.auth.getMe();
+
+      if (!data || !data.fullName || !data.email) {
+        console.warn("User is not fully authenticated or missing data.");
+        return;
+      }
+
       const [firstName, lastName] = data.fullName.split(" ");
 
-      form.setValue("firstName", firstName);
-      form.setValue("lastName", lastName);
+      form.setValue("firstName", firstName || "");
+      form.setValue("lastName", lastName || "");
       form.setValue("email", data.email);
     }
 
-    if (session) {
-      fetchUserInfo();
-    }
+    fetchUserInfo();
   }, [session, form]);
 
   const onSubmit = async (data: CheckoutFormValues) => {

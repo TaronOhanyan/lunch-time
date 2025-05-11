@@ -64,16 +64,16 @@ export const AddressInput: React.FC<Props> = ({ onChange }) => {
         onKeyDown={handleKeyDown}
         disabled={!ready}
         placeholder="Enter an address"
-        className="border p-2 rounded w-full"
+        className="border p-2 rounded w-full bg-[#f5f4f3]"
       />
       {status === "OK" && (
-        <ul className="absolute z-10 border rounded shadow bg-white w-full mt-1">
+        <ul className="absolute z-10 border rounded shadow bg-[#f5f4f3] w-full mt-1">
           {data.map(({ place_id, description }, index) => (
             <li
               key={place_id}
               onClick={() => handleSelect(description)}
-              className={`p-2 hover:bg-gray-200 cursor-pointer ${
-                index === activeIndex ? "bg-gray-200" : ""
+              className={`p-2 hover:bg-[#f5f4f3] cursor-pointer ${
+                index === activeIndex ? "bg-[#f5f4f3]" : ""
               }`}
             >
               {description}
